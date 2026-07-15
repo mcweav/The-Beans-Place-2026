@@ -13,6 +13,8 @@
 //
 // ============================================================
 
+import { div } from "framer-motion/client";
+
 // STEP 1: Import your section components
 // Each component lives in its own file inside ./components/
 // Use this syntax:  import ComponentName from "./components/ComponentName";
@@ -54,3 +56,51 @@
 // for the navigation links in the NavBar.
 
 /* --- YOUR COMPONENT CODE GOES HERE --- */
+// imports go below here //
+
+export default function App() {
+
+    return(
+        <div className="app">
+            {/* NAVBAR */}
+            
+            {/* HERO */}
+            <section className="hero bg-hero">
+                <div className="hero-grid">
+
+                </div>
+            </section>
+
+            {/* FEATURES / CAROUSEL */}
+            <section className="features bg-features" id="shop">
+
+            </section>
+            
+            {/* PRODUCT SHOWCASE */}
+            <section className="bg-cta">
+
+            </section>
+
+            {/* CTA */}
+            <section className="bg-cta">
+
+            </section>
+
+            {/* ABOUT */}
+            <section className="bg-cta" id="about">
+
+            </section>
+
+            {/* CONTACT */}
+            <section className="bg-cta" id="contact">
+
+            </section>
+
+            {/* FOOTER */}
+            <section className="bg-footer">
+
+            </section>
+
+        </div>
+    );
+}
