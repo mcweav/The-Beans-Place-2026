@@ -95,14 +95,14 @@ export default function NavBar() {
     const CloseMenu = () => setMenuOpen(false);
 
     useEffect( () => {
-        const handleScroll => setScrolled(window.scrollY > 20);
+        const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     return(
         <motion.header>
-            
+
         </motion.header> 
 
     );
