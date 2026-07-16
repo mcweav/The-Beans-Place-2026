@@ -12,6 +12,7 @@
 // - How JSX lets you use custom components like HTML tags
 //
 // ============================================================
+
 // STEP 1: Import your section components
 // Each component lives in its own file inside ./components/
 // Use this syntax:  import ComponentName from "./components/ComponentName";
@@ -52,7 +53,7 @@
 // for the navigation links in the NavBar.
 
 /* --- YOUR COMPONENT CODE GOES HERE --- */
-// imports go below here //
+// imports go below here
 import NavBar from "./components/NavBar";
 
 export default function App() {
@@ -60,7 +61,7 @@ export default function App() {
         <div className="app">
             {/* NAVBAR */}
             <NavBar />
-            
+
             {/* HERO */}
             <section className="hero bg-hero">
                 <div className="hero-grid"></div>

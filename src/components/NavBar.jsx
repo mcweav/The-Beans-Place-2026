@@ -103,20 +103,20 @@ export default function NavBar() {
         <motion.header
             className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}
             initial={{ y: -80, opacity: 0 }}
-            animate={{ y: 0, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}>
-            <div className="mx-auto flex w-full max-w-7x1 items-center justify-betweenpx-4 py-3 md:px-8">
-                {/*BRAND*/}
-                <a href="home" className="brand">
+            <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 md:px-8">
+                {/* Brand */}
+                <a href="#home" className="brand">
                     <img src={logo} alt="Beans Place Logo" className="logo h-12 w-auto md:h-14" />
                 </a>
 
-                {/*Desktop Nav*/}
+                {/* Desktop Nav */}
                 <nav className="nav-links hidden items-center gap-10 md:flex">
                     <a href="#home">Home</a>
                     <a href="#shop">Shop Coffee</a>
                     <a href="#about">Our Story</a>
-                    <a href="contact">Contact</a>
+                    <a href="#contact">Contact</a>
                 </nav>
 
                 {/* Desktop CTA */}
@@ -124,13 +124,13 @@ export default function NavBar() {
                     Order Now
                 </Button>
 
-                {/* MObile Hamburger */}
+                {/* Mobile Hamburger */}
                 <button
                     type="button"
-                    aria-label={menuOpen ? "Close Menu" : "Open Menu "}
+                    aria-label={menuOpen ? "Close Menu" : "Open Menu"}
                     aria-expanded={menuOpen}
                     onClick={() => setMenuOpen(!menuOpen)}
-                    className="relative z-50 flex h-10 w-10 flex-cool items-center jsutify-center gap-1.5 md:hidden">
+                    className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden">
                     <span
                         className={`block h-0.5 w-6 bg-black transition-all duration-300 ${menuOpen ? "translate-y-2 rotate-45" : ""}`}
                     />
@@ -148,9 +148,9 @@ export default function NavBar() {
                 {menuOpen && (
                     <motion.div
                         className="overflow-hidden md: hidden"
-                        initial={{ height: 0, opactiy: 0 }}
-                        animate={{ height: "auto", opactiy: 1 }}
-                        exit={{ height: 0, opactiy: 0 }}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}>
                         <nav className="flex flex-col gap-4 px-6 pb-6 pt-2">
                             <a href="#home" onClick={closeMenu} className="text-base font-semibold">
