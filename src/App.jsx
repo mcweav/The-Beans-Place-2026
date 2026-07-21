@@ -81,7 +81,9 @@ export default function App() {
             </section>
 
             {/* PRODUCT SHOWCASE */}
-            <section className="bg-cta"></section>
+            <section className="bg-cta">
+                <ProductShowcase />
+            </section>
             <RibbonTicker />
 
             {/* CTA */}
