@@ -63,7 +63,7 @@ import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Separator from "./ui/Separator";
-import logo from "../assets/Beans_logo.png";
+import Logo from "../assets/Beans_logo.png";
 import ScrollReveal from "./ui/ScrollReveal";
 
 // STEP 4: Create and export FooterSection

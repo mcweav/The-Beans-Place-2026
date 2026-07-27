@@ -101,11 +101,15 @@ export default function App() {
             </section>
 
             {/* CONTACT */}
-            <section className="bg-cta" id="contact"></section>
+            <section className="bg-cta" id="contact">
                 <ContactSection /> 
+            </section>
+                
             {/* FOOTER */}
-            <section className="bg-footer"></section>
+            <section className="bg-footer">
                 <FooterSection />
+            </section>
+                
         </div>
     );
 }

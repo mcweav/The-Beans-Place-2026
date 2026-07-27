@@ -469,15 +469,6 @@ export default function ContactSection() {
                         <span>Connect & Collaborate</span>
                     </motion.div>
 
-                    <h1 className="h1-stack" style={{ color: "var(--cream)" }}>
-                        GET IN
-                        
-
-                        <span className="muted" style={{ color: "var(--amber)" }}>
-                            TOUCH
-                        </span>
-                    </h1>
-
                     <p className="lead--light" style={{ maxWidth: "52ch", margin: "10px auto 0" }}>
                         Whether you're ordering beans, planning an event, or just want to say hello
                         - we'd love to hear from you.
