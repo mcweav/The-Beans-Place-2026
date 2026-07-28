@@ -1,8 +1,8 @@
 // ============================================================
-// APP.JSX — The Root Component (Day 2)
+// APP.JSX ? The Root Component (Day 2)
 // ============================================================
 // This is the MAIN file of your React application.
-// It acts as the "layout manager" — it imports all section
+// It acts as the "layout manager" ? it imports all section
 // components and arranges them on the page.
 //
 // WHAT YOU WILL LEARN:
@@ -43,7 +43,7 @@
 //   3. <RibbonTicker />
 //   4. Features section wrapped in: <section className="features bg-features" id="shop">
 //   5. Product Showcase wrapped in: <section className="bg-cta">
-//   6. <RibbonTicker /> (used again — components are reusable!)
+//   6. <RibbonTicker /> (used again ? components are reusable!)
 //   7. CTA section wrapped in: <section className="bg-cta">
 //   8. About section wrapped in: <section className="bg-cta" id="about">
 //   9. Contact section wrapped in: <section className="bg-cta" id="contact">
@@ -54,6 +54,8 @@
 
 /* --- YOUR COMPONENT CODE GOES HERE --- */
 // imports go below here
+import { useState } from "react";
+
 import NavBar from "./components/NavBar";
 import HeroSection from "./components/HeroSection";
 import RibbonTicker from "./components/RibbonTicker";
@@ -63,14 +65,64 @@ import CtaSection from "./components/CtaSection";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
 import FooterSection from "./components/FooterSection";
+import CartDrawer from "./components/CartDrawer";
 
 export default function App() {
-    return (
-        <div className="app">
-            {/* NAVBAR */}
-            <NavBar />
+    const [cartItems, setCartItems] = useState([]);
+    const [isCartOpen, setIsCartOpen] = useState(false);
+    const [checkoutMessage, setCheckoutMessage] = useState("");
 
-            {/* HERO */}
+    const handleAddToCart = (product) => {
+        setCartItems((prevItems) => {
+            const existingItem = prevItems.find((item) => item.id === product.id);
+
+            if (existingItem) {
+                return prevItems.map((item) =>
+                    item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+                );
+            }
+
+            return [...prevItems, { ...product, quantity: 1 }];
+        });
+
+        setCheckoutMessage("");
+        setIsCartOpen(true);
+    };
+
+    const updateQuantity = (productId, change) => {
+        setCartItems((prevItems) =>
+            prevItems.flatMap((item) => {
+                if (item.id !== productId) {
+                    return [item];
+                }
+
+                const updatedQty = item.quantity + change;
+                return updatedQty > 0 ? [{ ...item, quantity: updatedQty }] : [];
+            })
+        );
+    };
+
+    const removeFromCart = (productId) => {
+        setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId));
+    };
+
+    const handleCheckout = () => {
+        if (!cartItems.length) {
+            return;
+        }
+
+        setCheckoutMessage("Order placed successfully. Your fresh roast is on its way!");
+        setCartItems([]);
+        setIsCartOpen(true);
+    };
+
+    const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    return (
+        <div className="app" id="home">
+            <NavBar cartCount={itemCount} onCartClick={() => setIsCartOpen(true)} />
+
             <section className="hero bg-hero">
                 <div className="hero-grid">
                     <HeroSection />
@@ -79,37 +131,41 @@ export default function App() {
 
             <RibbonTicker />
 
-            {/* FEATURES / CAROUSEL */}
             <section className="features bg-features" id="shop">
                 <FeaturesSection />
             </section>
 
-            {/* PRODUCT SHOWCASE */}
             <section className="bg-cta">
-                <ProductShowcase />
+                <ProductShowcase onAddToCart={handleAddToCart} />
             </section>
             <RibbonTicker />
 
-            {/* CTA */}
             <section className="bg-cta">
                 <CtaSection />
             </section>
 
-            {/* ABOUT */}
             <section className="bg-cta" id="about">
                 <AboutSection />
             </section>
 
-            {/* CONTACT */}
             <section className="bg-cta" id="contact">
-                <ContactSection /> 
+                <ContactSection />
             </section>
-                
-            {/* FOOTER */}
+
             <section className="bg-footer">
                 <FooterSection />
             </section>
-                
+
+            <CartDrawer
+                isOpen={isCartOpen}
+                onClose={() => setIsCartOpen(false)}
+                cartItems={cartItems}
+                onUpdateQuantity={updateQuantity}
+                onRemoveItem={removeFromCart}
+                total={totalAmount}
+                onCheckout={handleCheckout}
+                checkoutMessage={checkoutMessage}
+            />
         </div>
     );
 }
